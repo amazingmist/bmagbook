@@ -56,10 +56,10 @@ public class ProcessRegister extends HttpServlet {
             request.setAttribute("error", "Lastname is invalid");
             rd.forward(request, response);
         } else if (!Validate.checkEmailOrPhone(emailOrPhone)) {
-            request.setAttribute("error", "Email or phone is already exist");
+            request.setAttribute("error", "Email or phone is invalid");
             rd.forward(request, response);
         } else if (UserDAO.isDuplicateEmailOrPhone(emailOrPhone)) {
-            request.setAttribute("error", "Email or phone is duplicate");
+            request.setAttribute("error", "Email or phone is already exist");
             rd.forward(request, response);
         } else if (!Validate.checkPassword(password)) {
             request.setAttribute("error", "Password is invalid");

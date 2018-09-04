@@ -24,16 +24,8 @@
                     <div class="col-md-12">
                         <form action="ProcessLogin" method="post" id="body-login-form">
                             <label>Login to BMAGBOOK</label>
-                            <%
-                                Object message = session.getAttribute("message");
-                                if (!StringUtil.getString(message).equals("")) {
-                            %>
-                            <div class="alert-danger" style="padding: 5px 15px">
-                                <%= message%>
-                            </div>
-                            <%
-                                }
-                            %>
+                            ${sessionScope.message != null ? 
+                              '<div class="alert-danger" style="padding: 5px 15px">'.concat(sessionScope.message).concat('</div>') : ''}
                             <input type="text" name="user-login-id" placeholder="Email address or phone number" />
                             <input type="password" name="user-login-password" placeholder="Password" />
                             <button type="submit" id="btn-login">Login</button>

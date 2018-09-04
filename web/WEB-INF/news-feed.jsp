@@ -15,7 +15,8 @@
                     <div class="left-tool-section">
                         <a href="ProcessProfile">
                             <img src="img/avatar.jpg">
-                            <%= profile.getLastName() + " " + profile.getFirstName()%>
+                            ${sessionScope.user.lastName}
+                            ${sessionScope.user.firstName}
                         </a>
                         <a href="ProcessProfile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                     </div>

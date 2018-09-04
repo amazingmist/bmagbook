@@ -69,6 +69,9 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <form action=\"ProcessLogin\" method=\"post\" id=\"body-login-form\">\r\n");
       out.write("                            <label>Login to BMAGBOOK</label>\r\n");
       out.write("                            ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.number == null ? param.number : \"hhaa\"}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("                            ");
 
                                 Object message = session.getAttribute("message");
                                 if (!StringUtil.getString(message).equals("")) {

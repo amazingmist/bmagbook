@@ -1,3 +1,4 @@
+<%@taglib uri="/WEB-INF/tlds/custom.tld" prefix="dates"%>
 <%@page import="util.StringUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +18,10 @@
                         <div class="profile-header-top">
                             <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
                             <img src="img/profile.jpg">
-                            <h3><%= profile.getLastName() + " " + profile.getFirstName()%></h3>
+                            <h3>
+                                ${sessionScope.user.lastName}
+                                ${sessionScope.user.firstName}
+                            </h3>
                             <a href="" id="profile-button-update-info">Update Info <span>1</span></a>
                             <a href="" id="profile-button-view-log">View Activity Log <span>5</span></a>
                         </div>
@@ -48,28 +52,21 @@
                                 <div class="col-md-8 profile-body-content-editing">
                                     <h4>Overview</h4>
                                     <div class="overview-form">
-                                        <%
-                                            Object error = session.getAttribute("error");
-                                            if (!StringUtil.getString(error).equals("")) {
-                                        %>
-                                        <div class="alert-danger" style="padding: 5px 15px">
-                                            <%= error%>
-                                        </div>
-                                        <%
-                                            }
-                                        %>
+                                        ${
+                                        sessionScope.error != null ? 
+                                            '<div class="alert-danger" style="padding: 5px 15px">'.concat(sessionScope.error) : ''}
                                         <form action="ProcessProfile" method="post">
                                             <label>First Name:</label>
                                             <input required type="text" name="first-name" maxlength="30" 
-                                                   value="<%= profile.getFirstName()%>"/>
+                                                   value="${sessionScope.user.firstName}"/>
 
                                             <label>Last Name:</label>
                                             <input required type="text" name="last-name" maxlength="30" 
-                                                   value="<%= profile.getLastName()%>"/>
+                                                   value="${sessionScope.user.lastName}"/>
 
                                             <label>Email/Mobile:</label>
                                             <input required type="email" name="mobile-or-email" 
-                                                   value="<%= profile.getEmailOrPhone()%>"/>
+                                                   value="${sessionScope.user.emailOrPhone}"/>
 
                                             <label>Password:</label>
                                             <input required type="password" name="user-password" />
@@ -238,18 +235,11 @@
                 </div>
             </div>
         </section>
-        <%
-            String[] birthday = profile.getBirthday().split("-");
-            String day = birthday[0];
-            String month = birthday[1];
-            String year = birthday[2];
-        %>
         <script>
             $(function () {
-                var day = "<%= StringUtil.getString(day)%>";
-                var month = "<%= StringUtil.getString(month)%>";
-                var year = "<%= StringUtil.getString(year)%>";
-                var sex = "<%=StringUtil.getString(profile.getSex())%>";
+                var day = "${dates:getDateParts(sessionScope.user.birthday)[0]}";
+                var month = "${dates:getDateParts(sessionScope.user.birthday)[1]}";
+                var year = "${dates:getDateParts(sessionScope.user.birthday)[2]}";
 
                 for (var i = 1; i <= 31; i++) {
                     if (i == day)
@@ -271,8 +261,7 @@
                     else
                         $("#years").append("<option>" + i + "</option>");
                 }
-
-                $("input[name=sex][value=" + sex + "]").prop("checked", true);
+                $("input[name=sex][value=${sessionScope.user.sex}]").prop("checked", true);
                 var viewportHeight = $(window).height();
                 $("#online-list").css("max-height", viewportHeight);
             });

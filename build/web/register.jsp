@@ -43,21 +43,13 @@
                     <div class="col-md-6">
                         <h3>Create an account</h3>
                         <p>It's free and always will be.</p>
-                        <%
-                            Object error = request.getAttribute("error");
-                            if (!StringUtil.getString(error).equals("")) {
-                        %>
-                        <div class="alert-danger" style="padding: 5px 15px">
-                            <%= error%>
-                        </div>
-                        <%
-                            }
-                        %>
+                        ${requestScope.error != null ? 
+                              '<div class="alert-danger" style="padding: 5px 15px">'.concat(requestScope.error).concat('</div>') : ''}
                         <form action="dang-ky" method="post" class="register-form">
                             <div class="reg-input-full-name">
                                 <div class="reg-input" id="first-name">
                                     <input type="text" name="first-name" placeholder="First name" 
-                                           value="<%=StringUtil.getString(request.getParameter("first-name"))%>">
+                                           value="${param["first-name"]}">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                     <span class="error-popup">Input your first name
                                         <span></span><span></span>
@@ -65,7 +57,7 @@
                                 </div>
                                 <div class="reg-input" id="last-name">
                                     <input type="text" name="last-name" placeholder="Last name"
-                                           value="<%=StringUtil.getString(request.getParameter("last-name"))%>">
+                                           value="${param["last-name"]}">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                     <span class="error-popup">Input your last name
                                         <span></span><span></span>
@@ -74,7 +66,7 @@
                             </div>
                             <div class="reg-input" id="mobile-or-email">
                                 <input type="text" name="mobile-or-email" placeholder="Mobile phone or email address"
-                                       value="<%=StringUtil.getString(request.getParameter("mobile-or-email"))%>">
+                                       value="${param["mobile-or-email"]}">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your email or phone
                                     <span></span><span></span>
@@ -223,33 +215,28 @@
 
         <script>
             $(function () {
-                var day = "<%=StringUtil.getString(request.getParameter("day"))%>"
-                var month = "<%=StringUtil.getString(request.getParameter("month"))%>"
-                var year = "<%=StringUtil.getString(request.getParameter("year"))%>"
-                var sex = "<%=StringUtil.getString(request.getParameter("sex"))%>"
-                
                 for (var i = 1; i <= 31; i++) {
-                    if(i == day)
+                    if (i == ${param["day"]}) {
                         $("#days").append("<option selected>" + i + "</option>");
-                    else
-                    $("#days").append("<option >" + i + "</option>");
+                    }else
+                        $("#days").append("<option>" + i + "</option>");
                 }
 
                 for (var i = 1; i <= 12; i++) {
-                    if(i == month)
+                    if (i == ${param["month"]}) {
                         $("#months").append("<option selected>" + i + "</option>");
-                    else
-                    $("#months").append("<option>" + i + "</option>");
+                    }else
+                        $("#months").append("<option>" + i + "</option>");
                 }
 
                 for (var i = 2010; i >= 1900; i--) {
-                    if(i == year)
+                    if (i == ${param["year"]}) {
                         $("#years").append("<option selected>" + i + "</option>");
-                    else
-                    $("#years").append("<option>" + i + "</option>");
+                    }else
+                        $("#years").append("<option>" + i + "</option>");
                 }
                 
-                $("input[name=sex][value=" + sex + "]").prop("checked", true);
+                $("input[name=sex][value=${param["sex"]}]").prop("checked", true);
             });
         </script>
     </body>
