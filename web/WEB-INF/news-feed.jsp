@@ -14,7 +14,7 @@
                 <div class="col-md-2 no-pad">
                     <div class="left-tool-section">
                         <a href="ProcessProfile">
-                            <img src="img/avatar.jpg">
+                            <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                             ${sessionScope.user.lastName}
                             ${sessionScope.user.firstName}
                         </a>

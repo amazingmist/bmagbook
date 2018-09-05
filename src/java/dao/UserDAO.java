@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -102,6 +103,35 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        return false;
+    }
+    
+    public static byte[] getImageData(String emailOrPhone){
+        String select = "SELECT avatar FROM tbl_profile WHERE email_mobile = ?";
+        try (Connection conn = openConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(select);
+            pstmt.setString(1, emailOrPhone);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                return rs.getBytes("avatar");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static boolean updateUserAvatar(InputStream inputStream, String emailOrPhone) {
+        String update = "UPDATE tbl_profile SET avatar = ? WHERE email_mobile = ?";
+        try(Connection conn = openConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(update);
+            pstmt.setBlob(1, inputStream);
+            pstmt.setString(2, emailOrPhone);
+            pstmt.executeUpdate();
+            return true;
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         return false;
     }
 }

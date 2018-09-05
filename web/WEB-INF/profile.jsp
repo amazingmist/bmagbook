@@ -16,8 +16,13 @@
                 <div class="col-md-8 no-pad">
                     <div class="profile-header">
                         <div class="profile-header-top">
-                            <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
-                            <img src="img/profile.jpg">
+                            <span id="profile-button-add-cover">
+                                <form action="UploadImage" id="frmUploadPhoto" enctype="multipart/form-data" method="post">
+                                    <i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo
+                                    <input type="file" class="input-cover-photo" id="userCoverPhoto" name="userCoverPhoto">
+                                </form>
+                            </span>
+                            <img src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                             <h3>
                                 ${sessionScope.user.lastName}
                                 ${sessionScope.user.firstName}
@@ -54,7 +59,7 @@
                                     <div class="overview-form">
                                         ${
                                         sessionScope.error != null ? 
-                                            '<div class="alert-danger" style="padding: 5px 15px">'.concat(sessionScope.error) : ''}
+                                            '<div class="alert-danger" style="padding: 5px 15px">'.concat(sessionScope.error).concat('</div>') : ''}
                                         <form action="ProcessProfile" method="post">
                                             <label>First Name:</label>
                                             <input required type="text" name="first-name" maxlength="30" 
@@ -264,6 +269,10 @@
                 $("input[name=sex][value=${sessionScope.user.sex}]").prop("checked", true);
                 var viewportHeight = $(window).height();
                 $("#online-list").css("max-height", viewportHeight);
+
+                $("#userCoverPhoto").change(function () {
+                    $("#frmUploadPhoto").submit();
+                });
             });
         </script>
         <script src="js/app.js"></script>
