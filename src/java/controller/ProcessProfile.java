@@ -49,7 +49,7 @@ public class ProcessProfile extends HttpServlet {
             String sex = request.getParameter("sex");
             String birthday = String.format("%s-%s-%s", day, month, year);
             
-            Profile profile = new Profile(firstName, lastName, newEmailOrPhone, password, birthday, sex);
+            Profile profile = new Profile(-1, firstName, lastName, newEmailOrPhone, password, birthday, sex);
             
             String currentEmailOrPhone = ((Profile)session.getAttribute("user")).getEmailOrPhone();
             

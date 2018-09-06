@@ -5,9 +5,9 @@
         <group name="Java">
             <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/src/java/dao/UserDAO.java</file>
             <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/web/WEB-INF/profile.jsp</file>
-            <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/src/java/controller/ProcessLogin.java</file>
             <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/web/WEB-INF/news-feed.jsp</file>
-            <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/src/java/util/Validate.java</file>
+            <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/src/java/controller/ProcessImage.java</file>
+            <file>file:/Users/vothanhtai/Documents/WorkSpace/Java/BlockVN/Block_JSP_BMAGBOOK/src/java/controller/UploadImage.java</file>
         </group>
     </open-files>
 </project-private>

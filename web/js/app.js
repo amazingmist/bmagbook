@@ -101,6 +101,8 @@ $(function () {
     var $frontTriangleInitPos = 15;
     var limit = 100;
     $('#online-list li').hover(function () {
+        $("#friend-detail-popup #friend-image").attr("src", $(this).find("img").attr('src'));
+        $("#friend-detail-popup #friend-name").text($(this).find("span").text());
         // Step 4.5: need to minus the limit to make sure the popup will not display for the last item at the bottom
         if ($(this).position().top >= $(window).height() - limit) {
             $friendDetailPopup.hide();

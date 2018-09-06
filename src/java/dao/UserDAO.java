@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Profile;
@@ -45,7 +47,8 @@ public class UserDAO {
             
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
-                profile = new Profile(rs.getString("first_name"), 
+                profile = new Profile(rs.getInt("id"),
+                        rs.getString("first_name"), 
                         rs.getString("last_name"), 
                         rs.getString("email_mobile"), 
                         rs.getString("password"), 
@@ -56,6 +59,52 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return profile;
+    }
+    
+    public static Profile getProfileById(int id){
+        Profile profile = null;
+        try (Connection conn = openConnection()){
+            String select = "SELECT * FROM tbl_profile WHERE id";
+            PreparedStatement pstmt = conn.prepareStatement(select);
+            pstmt.setInt(1, id);
+            
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                profile = new Profile(rs.getInt("id"),
+                        rs.getString("first_name"), 
+                        rs.getString("last_name"), 
+                        rs.getString("email_mobile"), 
+                        rs.getString("password"), 
+                        rs.getString("birthday"), 
+                        rs.getString("sex"));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return profile;
+    }
+    
+    public static List<Profile> getFriendsList(int me){
+        List<Profile> list = new ArrayList<>();
+        String select = "SELECT p.* FROM tbl_profile p, tbl_friends f WHERE p.id = f.friend_to AND f.me = ?";
+        try (Connection conn = openConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(select);
+            pstmt.setInt(1, me);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                Profile profile = new Profile(rs.getInt("id"),
+                        rs.getString("first_name"), 
+                        rs.getString("last_name"), 
+                        rs.getString("email_mobile"), 
+                        rs.getString("password"), 
+                        rs.getString("birthday"), 
+                        rs.getString("sex"));
+                list.add(profile);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return list;
     }
     
     public static Profile checkLogin(String emailOrPhone, String password){
