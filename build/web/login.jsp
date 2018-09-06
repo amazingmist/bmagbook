@@ -28,7 +28,7 @@
                               '<div class="alert-danger" style="padding: 5px 15px">'.concat(sessionScope.message).concat('</div>') : ''}
                             <input type="text" name="user-login-id" placeholder="Email address or phone number" />
                             <input type="password" name="user-login-password" placeholder="Password" />
-                            <button type="submit" id="btn-login">Login</button>
+                            <button type="submit" name="action" value="login" id="btn-login">Login</button>
                             <a href="/">Forgotten password?</a>
                             <a href="/">Signup for BMAGBook?</a>
                         </form>

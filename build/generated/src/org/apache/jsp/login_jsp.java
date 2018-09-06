@@ -69,27 +69,11 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <form action=\"ProcessLogin\" method=\"post\" id=\"body-login-form\">\r\n");
       out.write("                            <label>Login to BMAGBOOK</label>\r\n");
       out.write("                            ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.number == null ? param.number : \"hhaa\"}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\r\n");
-      out.write("                            ");
-
-                                Object message = session.getAttribute("message");
-                                if (!StringUtil.getString(message).equals("")) {
-                            
-      out.write("\r\n");
-      out.write("                            <div class=\"alert-danger\" style=\"padding: 5px 15px\">\r\n");
-      out.write("                                ");
-      out.print( message);
-      out.write("\r\n");
-      out.write("                            </div>\r\n");
-      out.write("                            ");
-
-                                }
-                            
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.message != null ? \r\n                              '<div class=\"alert-danger\" style=\"padding: 5px 15px\">'.concat(sessionScope.message).concat('</div>') : ''}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("                            <input type=\"text\" name=\"user-login-id\" placeholder=\"Email address or phone number\" />\r\n");
       out.write("                            <input type=\"password\" name=\"user-login-password\" placeholder=\"Password\" />\r\n");
-      out.write("                            <button type=\"submit\" id=\"btn-login\">Login</button>\r\n");
+      out.write("                            <button type=\"submit\" name=\"action\" value=\"login\" id=\"btn-login\">Login</button>\r\n");
       out.write("                            <a href=\"/\">Forgotten password?</a>\r\n");
       out.write("                            <a href=\"/\">Signup for BMAGBook?</a>\r\n");
       out.write("                        </form>\r\n");

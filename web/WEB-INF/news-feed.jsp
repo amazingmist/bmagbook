@@ -13,12 +13,12 @@
             <div class="row no-pad">
                 <div class="col-md-2 no-pad">
                     <div class="left-tool-section">
-                        <a href="ProcessProfile">
+                        <a href="FrontController?action=view-profile">
                             <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                             ${sessionScope.user.lastName}
                             ${sessionScope.user.firstName}
                         </a>
-                        <a href="ProcessProfile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
+                        <a href="FrontController?action=view-profile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                     </div>
 
                     <div class="left-tool-section">

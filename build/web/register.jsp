@@ -102,7 +102,7 @@
                             <p class="help-block">
                                 By clicking Create an account, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.
                             </p>
-                            <button type="submit" id="reg-button" name="submit">Create an account</button>
+                            <button type="submit" id="reg-button" name="action" value="register">Create an account</button>
                         </form>
                     </div>
                 </div>
