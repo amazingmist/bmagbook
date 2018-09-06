@@ -230,5 +230,19 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public static boolean addFriend(int me, int friend){
+        String insert = "INSERT INTO tbl_friends VALUES(null, ?, ?)";
+        try (Connection conn = openConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(insert);
+            pstmt.setInt(1, me);
+            pstmt.setInt(2, friend);
+            
+            pstmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
+    }
 }
 

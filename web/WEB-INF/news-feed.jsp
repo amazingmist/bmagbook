@@ -196,15 +196,11 @@
                                 <label>PEOPLE YOU MAY KNOW</label>
                                 <a href="#">See All</a>
                             </div>
-                            <div id="suggested-friend">
-
-                            </div>
+                            <div id="suggested-friend"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 no-pad">
-                    <%@include file="/WEB-INF/friend-list.jspf" %>
-                </div>
+                <div class="col-md-2 no-pad" id="friend-list"></div>
             </div>
             <section id="chat-box">
                 <div id="chat-box-header">
@@ -262,16 +258,49 @@
                     dataType: "html",
                     success: function (data) {
                         $("#suggested-friend").html(data);
+                        $(".btn-add-friend").click(function () {
+                            $.ajax({
+                                url: "ProcessSuggestedFriend",
+                                method: "POST",
+                                data: {
+                                    action: "add-friend",
+                                    'friend-id': $(this).attr("id")
+                                },
+                                success: function (data) {
+                                    $("#suggested-friend").html(data);
+                                    showFriendList();
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    alert("Status: " + textStatus);
+                                    alert("Error: " + errorThrown);
+                                }
+                            });
+                        });
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("Status: " + textStatus);
                         alert("Error: " + errorThrown);
                     }
                 });
+                showFriendList();
 
                 var viewportHeight = $(window).height();
                 $("#online-list ul").css("max-height", viewportHeight);
             });
+
+            function showFriendList() {
+                $.ajax({
+                    url: "ProcessFriendList",
+                    method: "POST",
+                    success: function (data) {
+                        $("#friend-list").html(data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert("Error: " + errorThrown);
+                    }
+                });
+            }
         </script>
         <script src="js/app.js"></script>
     </body>

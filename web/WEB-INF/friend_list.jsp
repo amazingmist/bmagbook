@@ -4,7 +4,7 @@
     <div id="friend-detail-popup">
         <span id="back-triange"></span>
         <span id="front-triange"></span>
-        <img src="img/profile.jpg" id="friend-image">
+        <img src="" id="friend-image">
         <div id="friend-detail-popup-detail">
             <p>
                 <a href="#" id="friend-name"></a>

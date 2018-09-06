@@ -60,6 +60,10 @@
         <servlet-name>ProcessSuggestedFriend</servlet-name>
         <servlet-class>controller.ProcessSuggestedFriend</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessFriendList</servlet-name>
+        <servlet-class>controller.ProcessFriendList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/dang-ky</url-pattern>
@@ -100,6 +104,10 @@
     <servlet-mapping>
         <servlet-name>ProcessSuggestedFriend</servlet-name>
         <url-pattern>/ProcessSuggestedFriend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessFriendList</servlet-name>
+        <url-pattern>/ProcessFriendList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

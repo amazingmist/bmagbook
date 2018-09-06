@@ -37,11 +37,7 @@ public class ProcessNewsFeed extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         if(session.getAttribute("user") != null){
-            Profile profile = (Profile) session.getAttribute("user");
-            List<Profile> list = UserDAO.getFriendsList(profile.getId());
-            request.setAttribute("friendList", list);
-            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/news-feed.jsp");
-            rd.forward(request, response); 
+            request.getRequestDispatcher("WEB-INF/news-feed.jsp").forward(request, response);
         }else{
             response.sendRedirect("login.jsp");
         }
