@@ -130,6 +130,30 @@ public class UserDAO {
         return list;
     }
     
+    public static List<Profile> getSuggesstedFriend(int me){
+        List<Profile> list = new ArrayList<>();
+        String select = "SELECT * FROM tbl_profile WHERE id != ? AND id NOT IN "
+                + "(SELECT friend_to FROM tbl_friends WHERE me = ?)";
+        try (Connection conn = openConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(select);
+            pstmt.setInt(1, me);
+            pstmt.setInt(2, me);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                Profile profile = new Profile(rs.getInt("id"),
+                        rs.getString("first_name"), 
+                        rs.getString("last_name"), 
+                        rs.getString("email_mobile"), 
+                        rs.getString("password"), 
+                        rs.getString("birthday"), 
+                        rs.getString("sex"));
+                list.add(profile);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
     public static Profile checkLogin(String emailOrPhone, String password){
         return getProfile(emailOrPhone, password);
     }

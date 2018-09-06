@@ -56,6 +56,10 @@
         <servlet-name>IndividualProfile</servlet-name>
         <servlet-class>controller.IndividualProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessSuggestedFriend</servlet-name>
+        <servlet-class>controller.ProcessSuggestedFriend</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/dang-ky</url-pattern>
@@ -92,6 +96,10 @@
     <servlet-mapping>
         <servlet-name>IndividualProfile</servlet-name>
         <url-pattern>/IndividualProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessSuggestedFriend</servlet-name>
+        <url-pattern>/ProcessSuggestedFriend</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

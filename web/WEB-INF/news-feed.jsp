@@ -196,82 +196,8 @@
                                 <label>PEOPLE YOU MAY KNOW</label>
                                 <a href="#">See All</a>
                             </div>
-                            <div class="friend-item">
-                                <img src="img/friend1.jpg">
-                                <span>
-                                    <a href="#">Tráº§n XuÃ¢n KhÃ´i</a> 
-                                    <span style="display:block;">123 mutual friends </span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
+                            <div id="suggested-friend">
 
-                            <div class="friend-item">
-                                <img src="img/friend2.jpg">
-                                <span>
-                                    <a href="#">Tráº§n VÄn á»t</a> 
-                                    <span style="display:block;">Le Thi Ca Chua ...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">LÃª XuÃ¢n Xoáº¡n</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend2.jpg">
-                                <span>
-                                    <a href="#">Tráº§n VÄn á»t</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Tráº§n VÄn á»t</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend1.jpg">
-                                <span>
-                                    <a href="#">Tráº§n VÄn á»t</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Tráº§n VÄn á»t</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Tráº§n VÄn á»t</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
@@ -329,6 +255,20 @@
 
         <script>
             $(function () {
+//                Get ajax suggested friend list
+                $.ajax({
+                    url: "ProcessSuggestedFriend",
+                    method: "POST",
+                    dataType: "html",
+                    success: function (data) {
+                        $("#suggested-friend").html(data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert("Error: " + errorThrown);
+                    }
+                });
+
                 var viewportHeight = $(window).height();
                 $("#online-list ul").css("max-height", viewportHeight);
             });
