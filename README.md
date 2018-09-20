@@ -1,2 +1,2 @@
 # bmagbook
-A social network like facebook. It just a pratice.
+A social network like facebook. It just a practice.
